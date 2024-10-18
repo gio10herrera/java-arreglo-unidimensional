@@ -226,7 +226,7 @@ public class ArregloUnidimensional {
     private static void inicializarJFrame() {
         //creacion del JFrame
         frame = new JFrame();
-        frame.setSize(310, 356);
+        frame.setSize(370, 416);
         //jFrameInterfaz.pack();
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

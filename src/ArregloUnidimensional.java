@@ -30,6 +30,7 @@ public class ArregloUnidimensional {
         addPanelsToPanelPadre();
         addPanelPadreToFrame();
         limitarTextFieldANumMayoresACero();
+        limitarTextFieldPosiciones();
         frame.setVisible(true);
     }
 
@@ -41,6 +42,19 @@ public class ArregloUnidimensional {
             public void keyTyped(KeyEvent e) {
                 char c = e.getKeyChar();
                 if (!Character.isDigit(c)){
+                    e.consume();
+                }
+            }
+        });
+    }
+
+    //limitar a que el textField solo permita 1 digito de 0 a 9
+    private static void limitarTextFieldPosiciones(){
+        txtPosition.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if (c < '0' || c > '9' || !txtPosition.getText().isEmpty()){
                     e.consume();
                 }
             }

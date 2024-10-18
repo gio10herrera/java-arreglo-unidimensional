@@ -34,7 +34,20 @@ public class ArregloUnidimensional {
         agregarDato();
         borrarDato();
         borrarTodosLosDatos();
+        mostrarDatosArreglo();
         frame.setVisible(true);
+    }
+
+    private static void mostrarDatosArreglo() {
+        btnShowArray.addActionListener(actionEvent -> {
+            StringBuilder datos = new StringBuilder("{ ");
+            for (int j : myArray) {
+                datos.append(j).append(", ");
+            }
+            datos.delete(datos.length() - 2, datos.length());
+            datos.append(" }");
+            lblResult.setText("Data: " + datos);
+        });
     }
 
     private static void borrarTodosLosDatos() {
@@ -213,7 +226,7 @@ public class ArregloUnidimensional {
     private static void inicializarJFrame() {
         //creacion del JFrame
         frame = new JFrame();
-        frame.setSize(300, 356);
+        frame.setSize(310, 356);
         //jFrameInterfaz.pack();
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.FocusEvent;
@@ -22,15 +24,22 @@ public class ArregloUnidimensional {
         addComponentsToPanelTitle();
         addComponentsToFirstSonPanel();
         addComponentsToSecondSonPanelButtons();
+        addComponentsToThirdSonPanelResult();
         addPanelsToPanelPadre();
         addPanelPadreToFrame();
         frame.setVisible(true);
     }
 
+    private static void addComponentsToThirdSonPanelResult() {
+        thirdSonPanelResult.add(lblResult);
+    }
+
     private static void inicilizarThirdSonPanelResult() {
         thirdSonPanelResult = new JPanel(new GridLayout(0, 1));
-        TitledBorder titledBorder = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY), " Resultado");
-        thirdSonPanelResult.setBorder(titledBorder);
+        TitledBorder titledBorder = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY), " Resultado");
+        titledBorder.setTitleColor(Color.GRAY);
+        CompoundBorder innerBorder = new CompoundBorder(titledBorder, BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        thirdSonPanelResult.setBorder(new CompoundBorder(new EmptyBorder(5, 5, 5, 5), innerBorder));
     }
 
     private static void addComponentsToSecondSonPanelButtons() {
@@ -42,9 +51,13 @@ public class ArregloUnidimensional {
     }
 
     private static void inicializarSecondSonPanelButtons() {
-        secondSonPanelButtons = new JPanel(new GridLayout(0, 1));
-        TitledBorder titledBorder = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY), "Acciones");
-        secondSonPanelButtons.setBorder(titledBorder);
+        GridLayout gridLayout = new GridLayout(0, 1);
+        gridLayout.setVgap(4);
+        secondSonPanelButtons = new JPanel(gridLayout);
+        TitledBorder titledBorder = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY), "Acciones");
+        titledBorder.setTitleColor(Color.GRAY);
+        CompoundBorder innerBorder = new CompoundBorder(titledBorder, new EmptyBorder(5, 5, 5, 5));
+        secondSonPanelButtons.setBorder(new CompoundBorder(new EmptyBorder(5, 5, 5, 5), innerBorder));
     }
 
     private static void addComponentsToPanelTitle() {
@@ -64,12 +77,15 @@ public class ArregloUnidimensional {
         panelPadre.add(panelTitle);
         panelPadre.add(firstSonPanel);
         panelPadre.add(secondSonPanelButtons);
+        panelPadre.add(thirdSonPanelResult);
     }
 
     private static void inicializarFirstSonPanelAddData() {
         firstSonPanel = new JPanel(new GridLayout(1, 2));
-        TitledBorder titledBorder = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY), "Dato y Posición");
-        firstSonPanel.setBorder(titledBorder);
+        TitledBorder titledBorder = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY), "Dato y Posición");
+        titledBorder.setTitleColor(Color.GRAY);
+        CompoundBorder innerBorder = new CompoundBorder(titledBorder, new EmptyBorder(5, 5, 5, 5));
+        firstSonPanel.setBorder(new CompoundBorder(new EmptyBorder(5, 5, 5, 5), innerBorder));
     }
 
     private static void addPanelPadreToFrame() {
@@ -95,6 +111,9 @@ public class ArregloUnidimensional {
         btnClearArray = new JButton("Borrar datos del arreglo");
         btnShowArray = new JButton("Mostrar datos del arreglo");
         btnCalculateAverage = new JButton("Calcular promedio");
+        lblResult = new JLabel(" ");
+        lblResult.setFont(new Font("Tahoma", Font.BOLD, 14));
+        lblResult.setHorizontalAlignment(SwingConstants.CENTER);
     }
 
     private static void crearJTextField (String placeHolder, JTextField txtField) {
@@ -123,7 +142,7 @@ public class ArregloUnidimensional {
     private static void inicializarJFrame() {
         //creacion del JFrame
         frame = new JFrame();
-        frame.setSize(300, 280);
+        frame.setSize(300, 356);
         //jFrameInterfaz.pack();
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

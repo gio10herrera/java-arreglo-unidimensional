@@ -2,10 +2,26 @@ import javax.swing.*;
 
 public class ArregloUnidimensional {
     static JFrame frame;
+    static JPanel panelPadre;
 
     public static void main(String[] args) {
         inicializarJFrame();
+        inicializarComponentes();
+        inicializarPanelPadre();
+        addPanelPadreToFrame();
         frame.setVisible(true);
+    }
+
+    private static void addPanelPadreToFrame() {
+        frame.getContentPane().add(panelPadre);
+    }
+
+    private static void inicializarPanelPadre() {
+        panelPadre = new JPanel();
+        panelPadre.setLayout(new BoxLayout(panelPadre, BoxLayout.Y_AXIS));
+    }
+
+    private static void inicializarComponentes() {
     }
 
     private static void inicializarJFrame() {

@@ -4,6 +4,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Arrays;
 
 public class ArregloUnidimensional {
     static JFrame frame;
@@ -31,7 +32,33 @@ public class ArregloUnidimensional {
         limitarTextFieldANumMayoresACero();
         limitarTextFieldPosiciones();
         agregarDato();
+        borrarDato();
+        borrarTodosLosDatos();
         frame.setVisible(true);
+    }
+
+    private static void borrarTodosLosDatos() {
+        btnClearArray.addActionListener(actionEvent -> {
+            Arrays.fill(myArray, 0);
+            lblResult.setText("Datos del array borrados");
+        });
+    }
+
+    private static void borrarDato() {
+        btnDeleteData.addActionListener(actionEvent -> {
+            try{
+                pos = Integer.parseInt(txtPosition.getText());
+                int data = myArray[pos];
+                if (data != 0){
+                    myArray[pos] = 0;
+                    lblResult.setText("Dato: " + data + " borrado de la posicion: " + pos);
+                } else {
+                    lblResult.setText("No hay datos en la posicion: " + pos);
+                }
+            }catch (NumberFormatException e) {
+                lblResult.setText("Dato invalido");
+            }
+        });
     }
 
     private static void agregarDato() {

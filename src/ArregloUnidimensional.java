@@ -35,7 +35,21 @@ public class ArregloUnidimensional {
         borrarDato();
         borrarTodosLosDatos();
         mostrarDatosArreglo();
+        calcularPromedio();
         frame.setVisible(true);
+    }
+
+    private static void calcularPromedio() {
+        btnCalculateAverage.addActionListener(actionEvent -> {
+            double average = 0.0;
+            int sum = 0;
+            for (int j : myArray) {
+                sum += j;
+            }
+            average = (double) sum / 10;
+            //average = (double) Math.round(average * 100) / 100;
+            lblResult.setText("Promedio: " + String.format("%.2f", average));
+        });
     }
 
     private static void mostrarDatosArreglo() {

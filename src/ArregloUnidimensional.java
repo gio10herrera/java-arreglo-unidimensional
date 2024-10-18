@@ -5,6 +5,8 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class ArregloUnidimensional {
     static JFrame frame;
@@ -27,7 +29,22 @@ public class ArregloUnidimensional {
         addComponentsToThirdSonPanelResult();
         addPanelsToPanelPadre();
         addPanelPadreToFrame();
+        limitarTextFieldANumMayoresACero();
         frame.setVisible(true);
+    }
+
+    //Solo permitir que se digiten numeros mayores a 0
+    //no se puede digitar caracteres diferentes a los digitos de 0 a 9
+    private static void limitarTextFieldANumMayoresACero(){
+        txtAddNum.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if (!Character.isDigit(c)){
+                    e.consume();
+                }
+            }
+        });
     }
 
     private static void addComponentsToThirdSonPanelResult() {

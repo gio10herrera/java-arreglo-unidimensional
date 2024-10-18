@@ -3,10 +3,7 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 
 public class ArregloUnidimensional {
     static JFrame frame;
@@ -14,6 +11,8 @@ public class ArregloUnidimensional {
     static JTextField txtAddNum, txtPosition;
     static JButton btnAddData, btnDeleteData, btnClearArray, btnShowArray, btnCalculateAverage;
     static JLabel lblTitle, lblResult;
+    static int[] myArray = new int[10];
+    static int pos, dato;
 
     public static void main(String[] args) {
         inicializarJFrame();
@@ -31,7 +30,21 @@ public class ArregloUnidimensional {
         addPanelPadreToFrame();
         limitarTextFieldANumMayoresACero();
         limitarTextFieldPosiciones();
+        agregarDato();
         frame.setVisible(true);
+    }
+
+    private static void agregarDato() {
+        btnAddData.addActionListener(actionEvent -> {
+            try{
+                dato = Integer.parseInt(txtAddNum.getText());
+                pos = Integer.parseInt(txtPosition.getText());
+                myArray[pos] = dato;
+                lblResult.setText("Dato: " + dato + " agregado en la posicion: " + pos);
+            }catch (NumberFormatException e) {
+                lblResult.setText("Dato invalido");
+            }
+        });
     }
 
     //Solo permitir que se digiten numeros mayores a 0

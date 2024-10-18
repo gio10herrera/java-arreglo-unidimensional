@@ -6,9 +6,9 @@ import java.awt.event.FocusListener;
 
 public class ArregloUnidimensional {
     static JFrame frame;
-    static JPanel panelPadre, firstSonPanel, panelTitle;
+    static JPanel panelPadre, firstSonPanel, panelTitle, secondSonPanelButtons;
     static JTextField txtAddNum, txtPosition;
-    static JButton btnAddData;
+    static JButton btnAddData, btnDeleteData, btnClearArray, btnShowArray, btnCalculateAverage;
     static JLabel lblTitle;
 
     public static void main(String[] args) {
@@ -17,11 +17,27 @@ public class ArregloUnidimensional {
         inicializarPanelPadre();
         inicializarPanelTitle();
         inicializarFirstSonPanelAddData();
+        inicializarSecondSonPanelButtons();
         addComponentsToPanelTitle();
         addComponentsToFirstSonPanel();
+        addComponentsToSecondSonPanelButtons();
         addPanelsToPanelPadre();
         addPanelPadreToFrame();
         frame.setVisible(true);
+    }
+
+    private static void addComponentsToSecondSonPanelButtons() {
+        secondSonPanelButtons.add(btnAddData);
+        secondSonPanelButtons.add(btnDeleteData);
+        secondSonPanelButtons.add(btnClearArray);
+        secondSonPanelButtons.add(btnShowArray);
+        secondSonPanelButtons.add(btnCalculateAverage);
+    }
+
+    private static void inicializarSecondSonPanelButtons() {
+        secondSonPanelButtons = new JPanel(new GridLayout(0, 1));
+        TitledBorder titledBorder = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY), "Acciones");
+        secondSonPanelButtons.setBorder(titledBorder);
     }
 
     private static void addComponentsToPanelTitle() {
@@ -40,6 +56,7 @@ public class ArregloUnidimensional {
     private static void addPanelsToPanelPadre() {
         panelPadre.add(panelTitle);
         panelPadre.add(firstSonPanel);
+        panelPadre.add(secondSonPanelButtons);
     }
 
     private static void inicializarFirstSonPanelAddData() {
@@ -67,6 +84,10 @@ public class ArregloUnidimensional {
         txtPosition = new JTextField();
         crearJTextField("Digita el posicion", txtPosition);
         btnAddData = new JButton("Agregar Dato");
+        btnDeleteData = new JButton("Eliminar Dato");
+        btnClearArray = new JButton("Borrar datos del arreglo");
+        btnShowArray = new JButton("Mostrar datos del arreglo");
+        btnCalculateAverage = new JButton("Calcular promedio");
     }
 
     private static void crearJTextField (String placeHolder, JTextField txtField) {

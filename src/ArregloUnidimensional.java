@@ -1,14 +1,13 @@
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
-import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
 public class ArregloUnidimensional {
     static JFrame frame;
     static JPanel panelPadre, firstSonPanel, panelTitle;
-    static JTextField txtAddNum;
+    static JTextField txtAddNum, txtPosition;
     static JButton btnAddData;
     static JLabel lblTitle;
 
@@ -35,7 +34,7 @@ public class ArregloUnidimensional {
 
     private static void addComponentsToFirstSonPanel() {
         firstSonPanel.add(txtAddNum);
-        firstSonPanel.add(btnAddData);
+        firstSonPanel.add(txtPosition);
     }
 
     private static void addPanelsToPanelPadre() {
@@ -45,7 +44,7 @@ public class ArregloUnidimensional {
 
     private static void inicializarFirstSonPanelAddData() {
         firstSonPanel = new JPanel(new GridLayout(1, 2));
-        TitledBorder titledBorder = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY), "Agregar Dato");
+        TitledBorder titledBorder = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY), "Dato y Posición");
         firstSonPanel.setBorder(titledBorder);
     }
 
@@ -64,28 +63,33 @@ public class ArregloUnidimensional {
         lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
         lblTitle.setFocusable(true);
         txtAddNum = new JTextField();
-        txtAddNum.setHorizontalAlignment(SwingConstants.CENTER);
-        String placeHolder = "Digita el dato";
-        txtAddNum.setText(placeHolder);
-        txtAddNum.setForeground(Color.GRAY);
-        txtAddNum.addFocusListener(new FocusListener() {
+        crearJTextField("Digita el dato", txtAddNum);
+        txtPosition = new JTextField();
+        crearJTextField("Digita el posicion", txtPosition);
+        btnAddData = new JButton("Agregar Dato");
+    }
+
+    private static void crearJTextField (String placeHolder, JTextField txtField) {
+        txtField.setText(placeHolder);
+        txtField.setHorizontalAlignment(SwingConstants.CENTER);
+        txtField.setForeground(Color.GRAY);
+        txtField.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent focusEvent) {
-                if (txtAddNum.getText().equals(placeHolder)) {
-                    txtAddNum.setText("");
-                    txtAddNum.setForeground(Color.BLACK);
+                if (txtField.getText().equals(placeHolder)) {
+                    txtField.setText("");
+                    txtField.setForeground(Color.BLACK);
                 }
             }
 
             @Override
             public void focusLost(FocusEvent focusEvent) {
-                if (txtAddNum.getText().isEmpty()) {
-                    txtAddNum.setForeground(Color.GRAY);
-                    txtAddNum.setText(placeHolder);
+                if (txtField.getText().isEmpty()) {
+                    txtField.setForeground(Color.GRAY);
+                    txtField.setText(placeHolder);
                 }
             }
         });
-        btnAddData = new JButton("Agregar Dato");
     }
 
     private static void inicializarJFrame() {

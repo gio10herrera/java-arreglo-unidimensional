@@ -6,10 +6,10 @@ import java.awt.event.FocusListener;
 
 public class ArregloUnidimensional {
     static JFrame frame;
-    static JPanel panelPadre, firstSonPanel, panelTitle, secondSonPanelButtons;
+    static JPanel panelPadre, firstSonPanel, panelTitle, secondSonPanelButtons, thirdSonPanelResult;
     static JTextField txtAddNum, txtPosition;
     static JButton btnAddData, btnDeleteData, btnClearArray, btnShowArray, btnCalculateAverage;
-    static JLabel lblTitle;
+    static JLabel lblTitle, lblResult;
 
     public static void main(String[] args) {
         inicializarJFrame();
@@ -18,12 +18,19 @@ public class ArregloUnidimensional {
         inicializarPanelTitle();
         inicializarFirstSonPanelAddData();
         inicializarSecondSonPanelButtons();
+        inicilizarThirdSonPanelResult();
         addComponentsToPanelTitle();
         addComponentsToFirstSonPanel();
         addComponentsToSecondSonPanelButtons();
         addPanelsToPanelPadre();
         addPanelPadreToFrame();
         frame.setVisible(true);
+    }
+
+    private static void inicilizarThirdSonPanelResult() {
+        thirdSonPanelResult = new JPanel(new GridLayout(0, 1));
+        TitledBorder titledBorder = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY), " Resultado");
+        thirdSonPanelResult.setBorder(titledBorder);
     }
 
     private static void addComponentsToSecondSonPanelButtons() {
